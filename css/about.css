@@ -1,0 +1,1280 @@
+/* ==========================================
+   ABOUT TITLE STYLES (Corretto)
+   ========================================== */
+
+.about-title-container {
+    text-align: center; /* Allinea il blocco del titolo al centro della pagina */
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+    padding: 0 1.5rem;
+    max-width: 1200px; /* Larghezza massima per non disperdere troppo il titolo */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-title {
+    line-height: 1.0; /* Line-height ridotto per avvicinare le righe */
+    font-weight: 700;
+    font-family: 'Fraunces', serif; /* Assicurati che sia il font serif */
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Imposta le righe una sotto l'altra */
+    align-items: center; /* Allinea le righe al centro orizzontalmente */
+}
+
+/* Stili specifici per le righe */
+.title-line1 {
+    font-size: clamp(3rem, 7vw, 7rem); /* Grande e responsivo */
+    color: rgb(142, 185, 255); /* Blu */
+    display: block; /* Occupa tutta la riga */
+    width: 100%; /* Si allinea al centro grazie a .about-title */
+}
+
+.title-line2 {
+    display: flex; /* Mette me? e Let's fix that. sulla stessa riga */
+    align-items: flex-end; /* Allinea il testo giallo alla base di me? */
+    justify-content: center; /* Allinea me? al centro orizzontale */
+    gap: 0ch; /* Spazio tra me? e Let's fix that. */
+}
+
+/* Colore Blu */
+.text-blue {
+    color: rgb(142, 185, 255);
+    font-size: clamp(3rem, 7vw, 7rem); /* Grande e responsivo */
+}
+
+/* --- Il Testo Giallo da Stretchare --- */
+
+.stretch-text {
+    color: rgb(253, 183, 100); /* Giallo */
+    font-family: "Plus Jakarta Sans", sans-serif;
+    /* 1. Rende l'elemento un blocco in linea per la trasformazione */
+    display: inline-block;
+    
+    /* 2. Disattiva il word-wrap per evitare che si spezzi */
+    white-space: nowrap;
+    
+    /* 3. Aumenta la dimensione del font per allinearlo in altezza a 'me?' */
+    font-size: 2.3em; /* Regola questo valore se necessario */
+    
+    /* 4. STRATCH: Deformazione */
+    /* scale(X, Y) - Deforma orizzontalmente e verticalmente */
+    transform: scale(1, 1.7); /* (Stratch dai lati, Stratch in alto) */
+    
+    /* 5. Imposta l'origine della trasformazione per il corretto allineamento */
+    transform-origin: left bottom; /* Si stretch-a a partire dalla base a sinistra */
+    
+    /* 6. Spaziatura extra tra le lettere (opzionale, per allargare ulteriormente) */
+    letter-spacing: 0.02em;
+    
+    /* Aggiungi un piccolo margine per non sovrapporsi a 'me?' */
+    margin-left: 0.8rem;
+
+    letter-spacing: -0.04em;
+}
+
+/* 1. CONTENITORE DELLO STACK */
+.paper-stack {
+    width: 75%;
+    max-width: 1100px;
+    min-height: 480px;
+
+    position: relative;
+
+    margin: 4rem auto 2rem auto;
+
+    perspective: 1500px;
+
+    transform-style: preserve-3d;
+    perspective-origin: center center;
+    z-index: 100;
+
+    filter: drop-shadow(
+        35px 35px 10px rgba(0, 0, 0, 0.15)
+    );
+    opacity: 75%;
+}
+
+.paper-card-wrapper {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+
+
+    transform-origin: left center;
+
+    cursor: pointer;
+
+    transform-style: preserve-3d;
+
+    will-change: transform, opacity;
+}
+
+/* 4. CONTENUTO E TEXTURE DELLA CARTA */
+.paper-card-content {
+    background-color: #f7f3ec;
+    background-image: url('../img/paper_texture.svg');
+    background-size: cover;
+    background-position: center;
+    
+    padding: clamp(9rem, 15vw, 15rem) clamp(6rem, 10vw, 10rem);
+    
+    position: relative;
+    overflow: hidden !important;
+
+    /* BORDO ONDULATO IN ALTO + TAGLIO PER LA PIEGA IN BASSO A DX */
+    clip-path: polygon(
+        0% 2.5%, 
+        10% 0.5%, 20% 3%, 30% 1%, 40% 3.5%, 50% 0.8%, 
+        60% 3%, 70% 1.2%, 80% 3.2%, 90% 0.5%, 100% 2.5%, 
+        100% calc(100% - 100px), 
+        calc(100% - 100px) 100%, 
+        0% 100%
+    );
+    min-height: 200px;
+    background: 
+        radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.6) 0%, transparent 12%),
+        url('../img/paper_texture.svg'), 
+        #f7f3ec;
+    background-size: cover, cover, auto;
+    background-position: center, center, center;
+}
+
+/* 1. IL RISVOLTO GRIGIO ORIGINALE (Quello che si vedeva perfettamente) */
+.paper-card-content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    
+    border-style: solid;
+    border-width: 0 0 100px 100px;
+    border-color: transparent transparent transparent #b6b1a4;
+    
+    filter: drop-shadow(-3px -3px 5px rgba(0, 0, 0, 0.4));
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* ELIMINA COMPLETAMENTE IL BLOCCO .paper-card-content::before */
+/* Dinosauro: GIGANTE al Centro-Sinistra */
+.paper-img-dino {
+    position: absolute;
+    top: 57%;
+    left: 0;
+    transform: translateY(-50%);
+    
+    width: clamp(400px, 60%, 750px) !important;
+    max-width: none !important;
+    height: auto !important;
+    
+    transition: opacity 0.5s ease-in-out !important;
+    will-change: opacity;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Razzo: GIGANTE in Alto a Destra */
+.paper-img-rocket {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: auto;
+    
+    width: clamp(350px, 50%, 600px) !important;
+    max-width: none !important;
+    height: auto !important;
+    
+    transition: opacity 0.5s ease-in-out !important;
+    will-change: opacity;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Assicurati che il testo stia sopra le illustrazioni */
+.paper-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive Tablet / Mobile */
+@media (max-width: 992px) {
+    .paper-card-wrapper {
+        width: 90%;
+    }
+    
+    .paper-img-dino {
+        left: 0.5rem;
+        width: 120px !important;
+    }
+    
+    .paper-img-rocket {
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 90px !important;
+    }
+}
+
+.paper-text{
+    font-family: "Bree Serif", sans-serif;
+    color: rgba(35, 35, 35, 1);
+    font-size: 150%;
+}
+
+.top-text {
+    position: absolute;
+    top: 7rem;       /* Distanza dal bordo superiore */
+    right: 7rem;     /* Aggancia il testo a destra */
+    left: 25rem;
+}
+
+.bottom-text {
+    position: absolute;
+    bottom: 6rem;   /* Distanza dal bordo inferiore */
+    left: 50%;         /* Sposta il punto di partenza al centro orizzontale */
+    transform: translateX(-50%); /* Centra perfettamente l'elemento rispetto alla sua larghezza */
+    margin: 0;
+    text-align: center;
+}
+
+/* ==========================================
+    SECONDA PAGINA
+   ========================================== */
+
+.illustrazione {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    z-index: 1;
+    pointer-events: none;
+    filter: drop-shadow(
+        20px 20px 5px rgba(0, 0, 0, 0.15)
+    );
+}
+
+.illustrazione img {
+    width: clamp(350px, 50%, 600px);
+    height: auto;
+}
+
+.bottom-text2{
+    position: absolute;
+    bottom: 4rem;   /* Distanza dal bordo inferiore */
+    left: 50%;         /* Sposta il punto di partenza al centro orizzontale */
+    transform: translateX(-50%); /* Centra perfettamente l'elemento rispetto alla sua larghezza */
+    margin: 0;
+    text-align: center;
+}
+
+/* ==========================================
+    TERZA PAGINA
+   ========================================== */
+
+.meme-terza-slide {
+    position: absolute;
+    top: 70%;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: translateY(-50%);
+}
+
+.meme-terza-slide img {
+    width: clamp(500px, 80%, 1000px);
+    height: auto;
+}
+
+.top-text3 {
+    position: absolute;
+    top: 7rem;
+    left: 10%;
+    width: 80%;
+
+    margin: 0;
+    text-align: center;
+}
+
+.bottom-text3{
+    position: absolute;
+    bottom: 8rem;   /* Distanza dal bordo inferiore */
+    left: 50%;         /* Sposta il punto di partenza al centro orizzontale */
+    transform: translateX(-50%); /* Centra perfettamente l'elemento rispetto alla sua larghezza */
+    margin: 0;
+    text-align: center;
+}
+
+/* ==========================================
+    QUARTA PAGINA
+   ========================================== */
+
+.meme-quarta-slide{
+        position: absolute;
+    top: 45%;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: translateY(-50%);
+   }
+
+.meme-quarta-slide img {
+    width: clamp(400px, 60%, 900px);
+    height: auto;
+}
+
+/* ==========================================
+    QUINTA PAGINA
+   ========================================== */
+
+.meme-quinta-slide{
+        position: absolute;
+    top: 55%;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: translateY(-50%);
+   }
+
+.meme-quinta-slide img {
+    width: clamp(400px, 80%, 900px);
+    height: auto;
+}
+
+.top-text5{
+    position: absolute;
+    top: 4rem;
+    left: 10%;
+    width: 80%;
+    font-size: 200%;
+    margin: 0;
+    text-align: center;
+}
+
+/* ==========================================
+    SESTA PAGINA
+   ========================================== */
+
+.meme-sesta-slide{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: translateY(-50%);
+   }
+
+.meme-sesta-slide img {
+    width: clamp(400px, 70%, 900px);
+    height: auto;
+}
+
+
+/* ==========================================
+    SETTIMA PAGINA
+   ========================================== */
+
+.meme-settima-slide{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: translateY(-50%);
+   }
+
+.meme-settima-slide img {
+    width: clamp(400px, 70%, 900px);
+    height: auto;
+}
+
+/* ==========================================
+    OTTAVA PAGINA
+   ========================================== */
+
+.meme-ottava-slide{
+    position: absolute;
+    top: 60%;
+    left: 1%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: translateY(-50%);
+   }
+
+.meme-ottava-slide img {
+    width: clamp(400px, 70%, 900px);
+    height: auto;
+}
+
+/* ==========================================
+    NONA PAGINA
+   ========================================== */
+
+.meme-nona-slide1 {
+    position: absolute;
+    top: 70%;
+    right: 20%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.meme-nona-slide1 img {
+    width: clamp(150px, 14vw, 900px);
+    height: auto;
+}
+
+
+.meme-nona-slide2 {
+    position: absolute;
+    top: 70%;
+    left: 20%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: translateY(-50%);
+}
+
+.meme-nona-slide2 img {
+    width: clamp(150px, 14vw, 500px);
+    height: auto;
+}
+
+.top-text9-1{
+    color: rgb(144, 33, 36);
+    font-weight: bold;
+    position: absolute;
+    top: 12.5%;
+    left: 10%;
+    width: 80%;
+    font-size: 200%;
+    margin: 0;
+    text-align: center;
+}
+
+.top-text9-2{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    font-size: 150%;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+.top-text9-3{
+    position: absolute;
+    top: 38%;
+    left: 10%;
+    width: 80%;
+    font-size: 180%;
+    margin: 0;
+    text-align: center;
+}
+
+.top-text9-4{
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    width: 80%;
+    font-size: 180%;
+    margin: 0;
+    text-align: center;
+}
+
+.card-9 .paper-card-content {
+    clip-path: polygon(
+        0% 2.5%, 
+        10% 0.5%, 
+        20% 3%, 
+        30% 1%, 
+        40% 3.5%, 
+        50% 0.8%, 
+        60% 3%, 
+        70% 1.2%, 
+        80% 3.2%, 
+        90% 0.5%, 
+        100% 2.5%, 
+        100% 100%, 
+        0% 100%
+    );
+}
+
+.card-9 .paper-card-content::after {
+    display: none;
+}
+
+/* ==========================================
+    CAMBIO TITOLO
+   ========================================== */
+
+/* Titolo finale */
+.about-title-container {
+    position: relative;
+}
+
+.final-title-content {
+    display: none;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+/* TESTO FINALE */
+.final-title-text {
+    display: none;
+
+    position: relative;
+    z-index: 2;
+
+    color: rgb(142, 185, 255);
+    font-family: 'Fraunces', serif;
+
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 1;
+
+    text-align: center;
+
+    margin: 0;
+}
+
+/* Mostra il contenitore finale */
+.about-title.final-title .final-title-content {
+    display: flex;
+}
+
+/* Nasconde il vecchio titolo */
+.about-title.final-title .original-title {
+    display: none;
+}
+
+/* Mostra il nuovo testo */
+.about-title.final-title .final-title-text {
+    display: block;
+}
+
+/* SVG con i due elementi laterali */
+.final-title-image {
+    position: absolute;
+
+    width: clamp(400px, 70vw, 1200px);
+    height: auto;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   RESPONSIVE ABOUT PAGE
+   ========================================================= */
+
+
+/* =========================================================
+   TABLET
+   993px → 768px
+   ========================================================= */
+
+@media (max-width: 992px) {
+
+    /* -------------------------
+       TITOLO
+       ------------------------- */
+
+    .about-title-container {
+        margin-bottom: 3rem;
+        padding: 0 1rem;
+    }
+
+    .title-line1,
+    .text-blue {
+        font-size: clamp(3rem, 8vw, 5.5rem);
+    }
+
+    .stretch-text {
+        font-size: 1.8em;
+    }
+
+
+    /* -------------------------
+       PAPER STACK
+       ------------------------- */
+
+    .paper-stack {
+        width: 88%;
+        min-height: 420px;
+
+        margin-top: 3rem;
+
+        perspective: 1200px;
+    }
+
+    .paper-card-wrapper {
+        min-height: 420px;
+    }
+
+    .paper-card-content {
+        min-height: 420px;
+
+        padding: 6rem 4rem;
+    }
+
+
+    /* -------------------------
+       TESTO GENERALE
+       ------------------------- */
+
+    .paper-text {
+        font-size: 125%;
+    }
+
+
+    /* -------------------------
+       PRIMA PAGINA
+       ------------------------- */
+
+    .top-text {
+        top: 5rem;
+        left: 15rem;
+        right: 3rem;
+    }
+
+    .bottom-text {
+        bottom: 4rem;
+        width: 80%;
+    }
+
+    .paper-img-dino {
+        width: clamp(250px, 45%, 500px) !important;
+        left: 0;
+    }
+
+    .paper-img-rocket {
+        width: clamp(220px, 40%, 450px) !important;
+    }
+
+
+    /* -------------------------
+       SECONDA PAGINA
+       ------------------------- */
+
+    .illustrazione {
+        top: 4rem;
+    }
+
+    .illustrazione img {
+        width: clamp(250px, 55%, 500px);
+    }
+
+    .bottom-text2 {
+        width: 80%;
+        bottom: 3rem;
+    }
+
+
+    /* -------------------------
+       TERZA PAGINA
+       ------------------------- */
+
+    .meme-terza-slide img {
+        width: 80%;
+    }
+
+    .top-text3 {
+        top: 5rem;
+        width: 85%;
+        left: 7.5%;
+    }
+
+    .bottom-text3 {
+        bottom: 4rem;
+        width: 80%;
+    }
+
+
+    /* -------------------------
+       QUARTA PAGINA
+       ------------------------- */
+
+    .meme-quarta-slide img {
+        width: 65%;
+    }
+
+
+    /* -------------------------
+       QUINTA PAGINA
+       ------------------------- */
+
+    .meme-quinta-slide img {
+        width: 80%;
+    }
+
+    .top-text5 {
+        top: 4rem;
+        font-size: 160%;
+    }
+
+
+    /* -------------------------
+       SESTA / SETTIMA PAGINA
+       ------------------------- */
+
+    .meme-sesta-slide img,
+    .meme-settima-slide img {
+        width: 75%;
+    }
+
+
+    /* -------------------------
+       OTTAVA PAGINA
+       ------------------------- */
+
+    .meme-ottava-slide img {
+        width: 75%;
+    }
+
+
+    /* -------------------------
+       NONA PAGINA
+       ------------------------- */
+
+    .meme-nona-slide1 {
+        right: 10%;
+    }
+
+    .meme-nona-slide2 {
+        left: 10%;
+    }
+
+    .meme-nona-slide1 img {
+        width: clamp(120px, 16vw, 400px);
+    }
+
+    .meme-nona-slide2 img {
+        width: clamp(120px, 16vw, 400px);
+    }
+
+    .top-text9-1 {
+        font-size: 160%;
+    }
+
+    .top-text9-2 {
+        font-size: 125%;
+    }
+
+    .top-text9-3,
+    .top-text9-4 {
+        font-size: 150%;
+    }
+
+
+    /* -------------------------
+       TITOLO FINALE
+       ------------------------- */
+
+    .final-title-text {
+        font-size: clamp(3rem, 7vw, 5rem);
+        width: 80%;
+    }
+
+    .final-title-image {
+        width: 90vw;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   767px → 481px
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+ /* -------------------------
+       PIEGA A DX
+    ------------------------- */
+
+    .paper-card-content {
+        clip-path: polygon(
+            0% 2.5%, 
+            10% 0.5%, 
+            20% 3%, 
+            30% 1%, 
+            40% 3.5%, 
+            50% 0.8%, 
+            60% 3%, 
+            70% 1.2%, 
+            80% 3.2%, 
+            90% 0.5%, 
+            100% 2.5%, 
+
+            /* PIEGA PIÙ PICCOLA */
+            100% calc(100% - 50px),
+            calc(100% - 50px) 100%,
+            0% 100%
+        );
+    }
+
+    .paper-card-content::after {
+        border-width: 0 0 50px 50px;
+    }
+
+    /* -------------------------
+       TITOLO
+       ------------------------- */
+
+    .about-title-container {
+        margin-bottom: 2rem;
+        padding: 0 0.75rem;
+    }
+
+    .title-line1,
+    .text-blue {
+        font-size: clamp(2.5rem, 11vw, 4.5rem);
+    }
+
+    .title-line2 {
+        gap: 0;
+    }
+
+    .stretch-text {
+        font-size: 1.35em;
+        margin-left: 0.4rem;
+        transform: scale(1, 1.5);
+    }
+
+
+    /* -------------------------
+       PAPER STACK
+       ------------------------- */
+
+    .paper-stack {
+        width: 94%;
+        min-height: 360px;
+
+        margin: 2rem auto rem;
+
+        perspective: 900px;
+    }
+
+    .paper-card-wrapper {
+        min-height: 360px;
+    }
+
+    .paper-card-content {
+        min-height: 360px;
+
+        padding: 4rem 1.5rem;
+    }
+
+
+    /* -------------------------
+       TESTO
+       ------------------------- */
+
+    .paper-text {
+        font-size: 105%;
+        line-height: 1.3;
+    }
+
+
+    /* -------------------------
+       PRIMA PAGINA
+       ------------------------- */
+
+    .top-text {
+        top: 4rem;
+        left: 30%;
+        right: 5%;
+    }
+
+    .bottom-text {
+        bottom: 3rem;
+        width: 85%;
+    }
+
+    .paper-img-dino {
+        width: 50% !important;
+        left: -1rem;
+    }
+
+    .paper-img-rocket {
+        width: 42% !important;
+        right: -0.5rem;
+    }
+
+
+    /* -------------------------
+       SECONDA PAGINA
+       ------------------------- */
+
+    .illustrazione {
+        top: 3rem;
+    }
+
+    .illustrazione img {
+        width: 65%;
+    }
+
+    .bottom-text2 {
+        bottom: 2.5rem;
+        width: 85%;
+    }
+
+
+    /* -------------------------
+       TERZA PAGINA
+       ------------------------- */
+
+    .meme-terza-slide {
+        top: 58%;
+    }
+
+    .meme-terza-slide img {
+        width: 90%;
+    }
+
+    .top-text3 {
+        top: 3.5rem;
+        left: 5%;
+        width: 90%;
+    }
+
+    .bottom-text3 {
+        bottom: 3rem;
+        width: 85%;
+    }
+
+
+    /* -------------------------
+       QUARTA PAGINA
+       ------------------------- */
+
+    .meme-quarta-slide {
+        top: 50%;
+    }
+
+    .meme-quarta-slide img {
+        width: 85%;
+    }
+
+
+    /* -------------------------
+       QUINTA PAGINA
+       ------------------------- */
+
+    .meme-quinta-slide {
+        top: 52%;
+    }
+
+    .meme-quinta-slide img {
+        width: 90%;
+    }
+
+    .top-text5 {
+        top: 3rem;
+        font-size: 135%;
+    }
+
+
+    /* -------------------------
+       SESTA PAGINA
+       ------------------------- */
+
+    .meme-sesta-slide img {
+        width: 90%;
+    }
+
+
+    /* -------------------------
+       SETTIMA PAGINA
+       ------------------------- */
+
+    .meme-settima-slide img {
+        width: 90%;
+    }
+
+
+    /* -------------------------
+       OTTAVA PAGINA
+       ------------------------- */
+
+    .meme-ottava-slide {
+        top: 55%;
+    }
+
+    .meme-ottava-slide img {
+        width: 90%;
+    }
+
+
+    /* -------------------------
+       NONA PAGINA
+       ------------------------- */
+
+    .meme-nona-slide1 {
+        top: 70%;
+        right: 5%;
+    }
+
+    .meme-nona-slide2 {
+        top: 70%;
+        left: 5%;
+    }
+
+    .meme-nona-slide1 img {
+        width: clamp(100px, 28vw, 220px);
+    }
+
+    .meme-nona-slide2 img {
+        width: clamp(100px, 28vw, 220px);
+    }
+
+    .top-text9-1 {
+        top: 8%;
+        left: 5%;
+        width: 90%;
+        font-size: 125%;
+    }
+
+    .top-text9-2 {
+        top: 18%;
+        left: 5%;
+        width: 90%;
+        font-size: 100%;
+    }
+
+    .top-text9-3 {
+        top: 35%;
+        left: 5%;
+        width: 90%;
+        font-size: 120%;
+    }
+
+    .top-text9-4 {
+        top: 65%;
+        left: 5%;
+        width: 90%;
+        font-size: 120%;
+    }
+
+
+    /* -------------------------
+       TITOLO FINALE
+       ------------------------- */
+
+    .final-title-content {
+        min-height: 100px;
+    }
+
+    .final-title-text {
+        width: 90%;
+        font-size: clamp(2.5rem, 9vw, 4rem);
+        line-height: 1;
+    }
+
+    .final-title-image {
+        width: 110vw;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE PICCOLO
+   480px E MENO
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    /* -------------------------
+       TITOLO
+       ------------------------- */
+
+    .title-line1,
+    .text-blue {
+        font-size: clamp(2.2rem, 12vw, 3.5rem);
+    }
+
+    .stretch-text {
+        font-size: 1.15em;
+        transform: scale(1, 1.4);
+    }
+
+
+    /* -------------------------
+       PAPER
+       ------------------------- */
+
+    .paper-stack {
+        width: 96%;
+        min-height: 320px;
+    }
+
+    .paper-card-wrapper {
+        min-height: 320px;
+    }
+
+    .paper-card-content {
+        min-height: 320px;
+        padding: 3rem 1rem;
+    }
+
+
+    /* -------------------------
+       TESTO
+       ------------------------- */
+
+    .paper-text {
+        font-size: 95%;
+    }
+
+
+    /* -------------------------
+       PRIMA PAGINA
+       ------------------------- */
+
+    .top-text {
+        top: 3rem;
+        left: 32%;
+        right: 3%;
+    }
+
+    .bottom-text {
+        bottom: 2.5rem;
+        width: 90%;
+    }
+
+    .paper-img-dino {
+        width: 48% !important;
+    }
+
+    .paper-img-rocket {
+        width: 40% !important;
+    }
+
+
+    /* -------------------------
+       SECONDA PAGINA
+       ------------------------- */
+
+    .illustrazione img {
+        width: 70%;
+    }
+
+
+    /* -------------------------
+       TERZA PAGINA
+       ------------------------- */
+
+    .top-text3 {
+        top: 2.5rem;
+        font-size: 90%;
+    }
+
+    .bottom-text3 {
+        bottom: 2.5rem;
+        font-size: 90%;
+    }
+
+
+    /* -------------------------
+       QUINTA PAGINA
+       ------------------------- */
+
+    .top-text5 {
+        top: 2.5rem;
+        font-size: 115%;
+    }
+
+
+    /* -------------------------
+       NONA PAGINA
+       ------------------------- */
+
+    .top-text9-1 {
+        font-size: 105%;
+    }
+
+    .top-text9-2 {
+        font-size: 85%;
+    }
+
+    .top-text9-3,
+    .top-text9-4 {
+        font-size: 100%;
+    }
+
+    .meme-nona-slide1 img,
+    .meme-nona-slide2 img {
+        width: 25vw;
+        min-width: 90px;
+    }
+
+
+    /* -------------------------
+       TITOLO FINALE
+       ------------------------- */
+
+    .final-title-text {
+        font-size: clamp(2.2rem, 10vw, 3.2rem);
+    }
+
+    .final-title-image {
+        width: 120vw;
+    }
+
+}

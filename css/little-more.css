@@ -1,0 +1,220 @@
+.faq-hero{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1.25rem 6rem 1.25rem;
+    position: relative;
+}
+
+.faq-title-container {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.faq-title-container h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.8rem, 5vw + 1rem, 6rem);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.faq-title-container p{
+    color: rgb(250, 248, 245);
+    font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
+    font-weight: bold;
+    margin-top: 0rem;
+}
+
+/* --- CONTENITORE PRINCIPALE (Il blocco chiaro con la shadow) --- */
+.faq-card-wrapper {
+    background-color: #fbf9f5; /* Un bianco caldo / crema chiaro simile alla tua grafica */
+    color: #2b2b2b;
+    
+    /* Bordi arrotondati superiori molto accentuati per creare l'arco */
+    border-top-left-radius: 50% 3rem; 
+    border-top-right-radius: 50% 3rem;
+
+    border-bottom-left-radius: 50% 3rem; 
+    border-bottom-right-radius: 50% 3rem;
+    
+    /* Spaziatura interna per far respirare le FAQ all'interno */
+    padding: 4rem 2rem 3rem 2rem;
+    margin-top: 6rem;
+    
+    /* Ombra morbida intorno al blocco */
+    box-shadow: 3rem 3rem 2.5rem rgba(0, 0, 0, 0.5);
+    
+    /* Responsive: si adatterà da solo all'altezza delle domande aperte/chiuse */
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* --- SEZIONE FAQ INTERNA --- */
+.faq-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* --- TESTO FINALE DENTRO IL BLOCCO --- */
+.faq-footer-text {
+    text-align: center;
+    margin-top: 4rem;
+    padding-bottom: 1rem;
+}
+
+.faq-footer-text h3 {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: clamp(1.8rem, 2vw, 2.5rem);
+    color: rgb(144, 33, 36); /* Il bordeaux del tuo tema */
+    margin-bottom: 0.5rem;
+    font-weight: 900;
+}  
+
+.faq-footer-text p {
+    font-size: clamp(0.95rem, 1vw, 1.1rem);
+    color: rgba(35, 35, 35, 1);
+    margin: 0;
+}
+/* Ogni singolo elemento FAQ */
+.faq-item {
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* La riga orizzontale la mettiamo direttamente sul summary (la domanda cliccabile) */
+.faq-item summary {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 0.5rem;
+    cursor: pointer;
+    list-style: none;
+
+    border-bottom: 2px solid rgb(144, 33, 36);
+}
+
+/* Quando la FAQ è aperta, la linea sotto la domanda scompare */
+.faq-item[open] summary {
+    border-bottom: none;
+}
+
+/* Rimuove il marker di default su Safari/Chrome */
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Numero progressivo */
+.faq-number {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    color: rgb(142, 185, 255);
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+}
+
+/* Testo della domanda */
+.faq-question {
+    font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+    color: rgba(35, 35, 35, 1);
+    font-weight: 600;
+}
+
+/* Contenuto della risposta */
+.faq-content {
+    padding: 1rem 0.5rem 2rem 4.5rem; 
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    position: relative;
+}
+
+.faq-content p {
+    color: #3b3b3b;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- La linea verticale laterale quando la FAQ è aperta --- */
+.faq-item[open] .faq-content::before {
+    content: '';
+    position: absolute;
+    left: 2.3rem; 
+    top: 0;
+    bottom: 1.5rem;
+    width: 7px;
+    background-color: rgba(144, 33, 37, 0.568);
+    border-radius: 2px;
+}
+
+.faq-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Contenitore dell'immagine interna alla risposta */
+/* .faq-img-container {
+    width: 100%;
+    max-width: 380px; Dimensione controllata per l'immagine
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0.5rem 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+    margin-top: 0.5rem;
+} */
+
+/* --- CORREZIONE SPAZIATURA FOOTER SOLO PER LA PAGINA ABOUT/LITTLE-MORE --- */
+
+/* 1. Riduciamo il margine superiore e inferiore del footer quando è dentro questa specifica pagina */
+body:has(.faq-hero) .site-footer {
+    margin-top: 3rem !important;
+}
+
+/* 2. Sistemiamo la distanza della frase finale sopra il footer */
+.final-phrase {
+    text-align: center;
+    margin-top: 10rem; 
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.final-phrase h4 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3.5vw + 1rem, 3.8rem);
+    color: rgb(253, 183, 100);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* --- ANIMAZIONE SCROLL PER LA FRASE FINALE --- */
+
+.final-phrase {
+    text-align: center;
+    margin-top: 10rem; 
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+    
+    /* Stato iniziale prima dell'animazione */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Quando la classe 'visible' viene aggiunta via JS, parte l'animazione */
+.final-phrase.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.final-phrase h4 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3.5vw + 1rem, 3.8rem);
+    color: rgb(253, 183, 100);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+}
