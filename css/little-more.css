@@ -218,3 +218,121 @@ body:has(.faq-hero) .site-footer {
     line-height: 1.2;
     margin: 0;
 }
+
+/* --- RESPONSIVO PER MOBILE & TABLET (< 768px) --- */
+@media screen and (max-width: 768px) {
+
+    /* 1. Ridimensionamento dell'Hero e dei margini principali */
+    .faq-hero {
+        padding: 2.5rem 1rem 4rem 1rem;
+    }
+
+    .faq-title-container {
+        margin-bottom: 2.5rem;
+    }
+
+    /* 2. Adattamento del blocco principale (card wrapper) */
+    .faq-card-wrapper {
+        /* Riduciamo il padding per non sprecare spazio prezioso sugli schermi stretti */
+        padding: 2.5rem 1rem 2rem 1rem;
+        margin-top: 3rem;
+        
+        /* Smussiamo i raggi dell'arco per adattarli alle proporzioni mobile */
+        border-top-left-radius: 30% 1.5rem;
+        border-top-right-radius: 30% 1.5rem;
+        border-bottom-left-radius: 30% 1.5rem;
+        border-bottom-right-radius: 30% 1.5rem;
+        
+        /* Ombra più leggera per evitare l'effetto "pesante" su mobile */
+        box-shadow: 1rem 1rem 1.5rem rgba(0, 0, 0, 0.35);
+    }
+
+    /* 3. Ottimizzazione delle dimensioni dei testi (Tipografia Mobile) */
+    
+    /* Titolo principale FAQ */
+    .faq-title-container h1 {
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+    }
+
+    /* Sottotitolo Hero */
+    .faq-title-container p {
+        font-size: clamp(0.95rem, 4vw, 1.2rem);
+    }
+
+    /* Numeri progressivi delle domande (es. 01, 02) */
+    .faq-number {
+        font-size: 1.3rem;
+        margin-right: 1rem;
+    }
+
+    /* Testo della domanda cliccabile */
+    .faq-question {
+        font-size: 1.05rem;
+        line-height: 1.4;
+    }
+
+    /* Testo all'interno della risposta */
+    .faq-content p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    /* 4. Sistemazione della spaziatura e della linea verticale di apertura */
+    .faq-content {
+        /* Riduciamo l'indentazione a sinistra per adattarla agli schermi piccoli */
+        padding: 0.8rem 0.2rem 1.5rem 2.2rem; 
+    }
+
+    /* Riposizioniamo la linea verticale di lato quando la FAQ è aperta */
+    .faq-item[open] .faq-content::before {
+        left: 0.8rem; /* Spostata più a sinistra per recuperare spazio */
+        width: 5px;   /* Leggermente più sottile su mobile */
+    }
+
+    /* Spaziatura interna del summary ridotta per compattezza */
+    .faq-item summary {
+        padding: 1.2rem 0.3rem;
+    }
+
+    /* 5. Sezione Footer interna alla card */
+    .faq-footer-text {
+        margin-top: 2.5rem;
+    }
+
+    .faq-footer-text h3 {
+        font-size: clamp(1.4rem, 5vw, 1.8rem);
+    }
+
+    .faq-footer-text p {
+        font-size: 0.9rem;
+    }
+
+    /* --- FRASE FINALE SOPRA IL FOOTER (Statica e senza animazione) --- */
+.final-phrase {
+    text-align: center;
+    margin-top: 10rem; 
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.final-phrase h4 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3.5vw + 1rem, 3.8rem);
+    color: rgb(253, 183, 100);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Gestione mobile per la frase finale */
+@media screen and (max-width: 768px) {
+    .final-phrase {
+        margin-top: 5rem; /* Margine ridotto su mobile */
+        margin-bottom: 1.5rem;
+    }
+
+    .final-phrase h4 {
+        font-size: clamp(1.6rem, 7vw, 2.5rem);
+    }
+}
+}

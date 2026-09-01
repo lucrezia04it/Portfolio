@@ -94,6 +94,7 @@ a {
     margin-bottom: 0;
     line-height: 0.9;
     font-size: clamp(4rem, 4rem + 5vw, 9rem);
+    margin-left: 3rem;
 }
 
 .subtitle{
@@ -105,6 +106,7 @@ a {
     top: -0.3em;
     z-index: 2;
     font-size: clamp(1.4rem, 2.6vw, 2.5rem);
+    margin-left: 4rem;
 }
 
 /*BIO-CARD*/
@@ -125,7 +127,7 @@ a {
 .bio-card p {
     color: rgb(144, 33, 36); 
     font-size: 1.5em;
-    margin-left: clamp(1rem, 22%, 18rem);
+    margin-left: clamp(1rem, 25%, 18rem);
     margin-right: clamp(2rem, 35%, 14rem);
     max-width: 35ch;
 }
@@ -165,7 +167,7 @@ a {
     height: 100% !important;
     object-fit: contain;
     z-index: 1;
-    transform: scale(1.2) translate(-20%, 13%);
+    transform: scale(1.4) translate(2%, 30%);
     filter: drop-shadow(20px 40px 2px rgba(0, 0, 0, 0.25));
 }
 
@@ -187,7 +189,7 @@ a {
 .avatar-photo {
     z-index: 2;
     opacity: 1;
-    transform: scale(1.9) translate(-25%, 11%);
+    transform: scale(2.2) translate(-12%, 22%);
 }
 
 /* 2. DISEGNO (nascosto subito, già in posizione) */
@@ -202,18 +204,14 @@ a {
     position: absolute;
     
     /* POSIZIONAMENTO SOPRA LA TESTA */
-    top: -5%;             /* Regola questo valore per alzarle o abbassarle */
-    left: 20%;             /* Le sposta verso il centro orizzontale */
-    transform: translateX(-50%); /* Centra perfettamente l'elemento */
-    
-    /* DIMENSIONI */
-    width: 35%;            /* Regola la grandezza delle stelle rispetto alla testa */
+    top: -30% !important;            /* Regola questo valore per alzarle o abbassarle */
+    left: 55% !important;            /* Le sposta verso il centro orizzontale */
     height: auto;
     
     /* LIVELLO E COMPORTAMENTO */
     z-index: 5;            /* Sta SOPRA sia al bordo (z-index: 1) sia alla ragazza (z-index: 2) */
     pointer-events: none;  /* Evita di intralciare eventuali click */
-    transform: translateX(-60%) rotate(15deg); /* Ruota di 15 gradi in senso orario */
+    transform: translate(-50%, 40%) rotate(15deg); /* Ruota di 15 gradi in senso orario */
     filter: drop-shadow(15px -5px 2px rgba(0, 0, 0, 0.45));
 }
 
@@ -423,7 +421,7 @@ a {
     color: rgb(253, 183, 100) !important;
     font-size: 1rem;
     font-family: 'Fraunces', serif;
-    margin-top: 4rem; /* Azzerato: l'altezza la decidi con il padding-top sopra */
+    margin-top: 5rem; /* Azzerato: l'altezza la decidi con il padding-top sopra */
 }
 
 .suggested-page::after {
@@ -449,6 +447,7 @@ a {
     text-align: center;
     opacity: 0.8;
     font-weight: bold;
+    margin-top: 0;
 }
 
 
@@ -478,7 +477,7 @@ a {
     position: absolute;
     top: 10em;
     right: 0;
-    height: 100%;
+    height: 700px;
     width: 250px;         /* Larghezza fissa per rendere visibile il blocco */
     overflow: hidden;     /* Taglia le scritte in eccesso senza allungare la pagina */
     z-index: 2;           /* Lo porta sopra allo sfondo */
@@ -553,7 +552,7 @@ a {
     display: none;
     background: none;
     border: none;
-    padding: 6px;          /* aggiunge area di tocco */
+    padding: 6px;           /* aggiunge area di tocco */
     width: 44px;            /* era 32px */
     height: 44px;            /* era 32px */
     flex-direction: column;
@@ -693,26 +692,42 @@ a {
 }
 
 /* =========================================================
-   MOBILE
-   max 767px
+   MOBILE (max 767px) - CON SCROLL E FOOTER VISIBILE
    ========================================================= */
 
 @media (max-width: 767px) {
 
-*{
-    box-sizing: border-box;
-}
-
-     html,
-    body {
-        max-width: 100%;
-        position: relative;
+    * {
+        box-sizing: border-box;
     }
 
-    main.hero {
+    /* 1. Riabilitiamo lo scroll verticale naturale della pagina */
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden !important;
+        overflow-y: auto !important; /* Permette di scrollare per vedere tutto il contenuto */
         position: relative;
-        overflow-x: hidden;
-        }
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 2. Rimuoviamo i limiti rigidi di altezza dal contenitore principale */
+    main.hero,
+    .about-hero {
+        position: relative;
+        width: 100%;
+        max-width: 100vw;
+        height: auto;
+        overflow: visible !important;
+        box-sizing: border-box;
+        padding: 0.8rem 0rem 0rem 0.8rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 2rem;
+    }
+
     /* -----------------------------------------------------
        HEADER
        ----------------------------------------------------- */
@@ -757,7 +772,7 @@ a {
 
     .subtitle {
         font-size: 0.8rem;
-        left: 4.8rem;
+        margin-left: 4rem;
         top: -0.3rem;
     }
 
@@ -770,8 +785,7 @@ a {
         width: 100%;
         box-sizing: border-box;
 
-        margin-top: -0.2rem;
-        margin-left: 0;
+        margin-top: -0.55rem;
 
         padding: 2rem 0rem 0rem;
 
@@ -811,11 +825,18 @@ a {
 
     .avatar-photo {
         opacity: 1 !important;
-        transform: scale(2) translate(-6.7%, 1%) !important;
+        transform: scale(1.9) translate(1%, 3%) !important;
+        object-fit: contain;
     }
 
-    .avatar-border{
-        transform: scale(1.25) translate(0.5%, 1%) !important;
+    .avatar-border {
+        position: absolute;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain;
+        z-index: 1;
+        transform: scale(1.2) translate(15%, 0%) !important;
+        filter: drop-shadow(10px 5px 2px rgba(0, 0, 0, 0.25));
     }
 
     .avatar-draw {
@@ -823,9 +844,9 @@ a {
     }
 
     .avatar-stars {
-        width: 30%;
-        top: -3rem;
-        left: 30%;
+        width: 25%;
+        transform: translate(0%, 15%) rotate(15deg); /* Ruota di 15 gradi in senso orario */
+        filter: drop-shadow(15px -5px 2px rgba(0, 0, 0, 0.45));
     }
 
 
@@ -841,16 +862,20 @@ a {
 
 
     /* -----------------------------------------------------
-       FOOTER
+       FOOTER (Ora ben visibile in fondo grazie allo scroll)
        ----------------------------------------------------- */
 
     .site-footer {
-        margin: 1rem 1rem 1rem;
+        position: relative;
+        margin: 4rem 1rem 2rem 1rem;
+        max-height: none;
+        overflow: visible;
     }
+  
 
     .footer-stroke-wrapper {
         border-width: 2px;
-        padding: 2rem 1rem 3rem;
+        padding: 2rem 1rem;
     }
 
     .footer-content {
@@ -901,59 +926,55 @@ a {
         filter: blur(3px);
     } */
 
-      .keep-exploring-wrapper {
-    position: static;
-    transform: none;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
+    .keep-exploring-wrapper {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none; /* Annulla il translate(50%) che lo tagliava fuori su mobile */
+        width: 100%;
+        margin-top: 2rem;
+    }
 
-  .site-footer h2.Fraunces {
-    /* position: relative; serve per ancorare l'::after (ombra) */
-    display: flex;
-    margin: 0;
-    font-size: 3.6rem !important;
-    -webkit-text-stroke-width: 1.5px !important;
-    white-space: nowrap;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
-    bottom: 4.3rem;
-  }
+    .site-footer h2.Fraunces {
+        display: flex;
+        margin-top: -3rem;
+        font-size: 2.6rem !important;
+        -webkit-text-stroke-width: 1px !important;
+        white-space: nowrap;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        position: static;
+        transform: none;
+        background-color: rgb(144, 33, 36);
+        text-shadow: none;
+    }
 
-  .site-footer h2.Fraunces::after {
-    -webkit-text-stroke-width: 1px !important;
-    transform: translate(12px, 5px);
-    filter: blur(2px);
-  }
+    .site-footer h2.Fraunces::after {
+        display: none;
+    }
 
-  .footer-bottom-info {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 0.5rem;
-  }
+    .footer-bottom-info {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
 
-  .suggested-page {
-    display: none;
-  }
-
-  .site-footer {
-    margin: 0rem 2rem 0rem;
-  }
-    /* -----------------------------------------------------
-       INFO FINALE
-       ----------------------------------------------------- */
+.suggested-page {
+   align-self: flex-end;
+    color: rgb(253, 183, 100) !important;
+    font-size: 0.8rem;
+    font-family: 'Fraunces', serif;
+    margin-top: -3rem; /* Azzerato: l'altezza la decidi con il padding-top sopra */
+}
 
     .copyright {
-        font-size: 0.5rem;
+        font-size: 0.6rem;
+        margin-top: 1rem;
     }
 
 
@@ -985,14 +1006,14 @@ a {
     }
 
     .hero-content {
-  position: relative;
+        position: relative;
   min-height: calc(1rem + 100vw + 3rem); /* top + height avatar + margine di sicurezza */
-}
+    }
 }
 
+
 /* =========================================================
-   SCHERMI MOLTO PICCOLI
-   max 380px
+   SCHERMI MOLTO PICCOLI (max 380px)
    ========================================================= */
 
 @media (max-width: 380px) {
@@ -1001,7 +1022,7 @@ a {
     }
 
     .hero-title h1 {
-        font-size: 3rem !important;
+        font-size: 2.6rem !important;
     }
 
     .avatar-wrapper {

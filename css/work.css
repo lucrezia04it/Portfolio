@@ -160,3 +160,58 @@
     /* eventuali padding o colori dei tuoi pulsanti/link */
     color: rgb(144, 33, 36);
 }
+
+/* --- RESPONSIVE PER MOBILE & TABLET (< 768px) --- */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Allarghiamo il contenitore principale del progetto per occupare più spazio sullo schermo */
+    .project-container {
+        max-width: 100%;
+        padding: 0 0.5rem;
+    }
+
+    /* 2. Trasformiamo la card in un layout verticale (Immagine sopra, Testo sotto) */
+    .project-card {
+        flex-direction: column;
+        max-height: none; /* Rimuoviamo il limite di altezza fissa */
+    }
+
+    /* 3. L'immagine occupa tutta la larghezza e diamo un'altezza fissa proporzionata per mobile */
+    .project-preview {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 250px; /* Altezza regolabile a piacimento per l'anteprima */
+        box-shadow: 0 1rem 1.25rem rgba(0, 0, 0, 0.2);
+    }
+
+    .project-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 4. La sezione info occupa il resto dello spazio sotto l'immagine */
+    .project-info {
+        flex: 0 0 auto;
+        padding: 1.5rem 1rem;
+        overflow-y: visible; /* Evitiamo doppi scroll interni su mobile */
+    }
+
+    /* 5. Ottimizziamo il box dell'obiettivo e i link per schermi piccoli */
+    .project-goal-box {
+        width: 100%;
+        max-width: 100%;
+        margin: 0.5rem 0 1rem 0; /* Centrato e senza margini laterali forzati */
+    }
+
+    .project-links {
+        gap: 2rem; /* Riduciamo lo spazio eccessivo tra i link su mobile */
+        justify-content: space-around;
+        margin-left: 0;
+    }
+
+    /* Adattiamo leggermente i titoli troppo grandi per evitare sbavature */
+    .project-info h2 {
+        font-size: 1.8rem;
+    }
+}

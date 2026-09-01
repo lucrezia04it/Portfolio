@@ -6,8 +6,8 @@
     <title>About - Lucrezia Longo</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/about.css">
@@ -18,7 +18,7 @@
         <!-- Placeholder Navbar -->
         <div id="navbar-placeholder"></div>
 
-        <main class="about-hero">
+     <main class="about-hero">
             <!-- Titolo Principale -->
             <div class="about-title-container">
                 <h1 class="about-title" id="about-title">
@@ -64,14 +64,14 @@
                             So, what do you want to do next?
                         </p>
                         <div class="meme-nona-slide1" >
-                            <a href="little-more.html" target="_blank" rel="noopener noreferrer">
+                            <a href="../html/little-more.html" target="_blank" rel="noopener noreferrer">
                                 <img src="../img/meme-nona-slide.svg" alt="Illustration"></a>
                         </div>
                         <p class="paper-text top-text9-4">
                             or
                         </p>
                         <div class="meme-nona-slide2">
-                            <a href="work.html" target="_blank" rel="noopener noreferrer">
+                            <a href="../html/work.html" target="_blank" rel="noopener noreferrer">
                                 <img src="../img/meme-nona-slide2.svg" alt="Illustration"></a>
                         </div>
 
@@ -179,6 +179,127 @@
     <!-- Scripts -->
     <script src="../javaScript/componenti.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="../javaScript/about.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = Array.from(document.querySelectorAll(".paper-card-wrapper"));
+            
+            // Ordina le schede da card-1 a card-9 in base alla classe CSS
+            cards.sort((a, b) => {
+                const numA = parseInt(a.className.match(/card-(\d+)/)?.[1] || 0);
+                const numB = parseInt(b.className.match(/card-(\d+)/)?.[1] || 0);
+                return numA - numB;
+            });
+
+            let currentIndex = 0;
+            const totalCards = cards.length;
+            let isAnimating = false;
+
+            // Configurazione iniziale dello stack di carta
+            cards.forEach((card, index) => {
+                if (index === 0) {
+                    gsap.set(card, { zIndex: totalCards, scale: 1, rotation: 0, y: 0, opacity: 1 });
+                } else {
+                    gsap.set(card, { 
+                        zIndex: totalCards - index, 
+                        scale: 0.95 - (index * 0.01), 
+                        y: index * 4, 
+                        opacity: 0.8 
+                    });
+                }
+            });
+
+            function flipCard() {
+                if (isAnimating || currentIndex >= totalCards - 1) return;
+                isAnimating = true;
+
+                const currentCard = cards[currentIndex];
+                currentIndex++;
+                const nextCard = cards[currentIndex];
+
+                const tl = gsap.timeline({
+                    onComplete: () => {
+                        isAnimating = false;
+                    }
+                });
+
+                // Uscita della scheda corrente con effetto sfogliatura fluido
+                tl.to(currentCard, {
+                    duration: 0.6,
+                    y: -100,
+                    x: 40,
+                    rotation: 10,
+                    opacity: 0,
+                    scale: 0.9,
+                    ease: "power2.inOut"
+                })
+                // Ingresso della scheda successiva
+                .to(nextCard, {
+                    duration: 0.5,
+                    y: 0,
+                    x: 0,
+                    rotation: 0,
+                    scale: 1,
+                    opacity: 1,
+                    ease: "power3.out"
+                }, "-=0.35");
+
+                // Aggiorna la pila dei z-index
+                cards.forEach((card, idx) => {
+                    if (idx >= currentIndex) {
+                        gsap.set(card, { zIndex: totalCards - (idx - currentIndex) });
+                    }
+                });
+            }
+
+            // Gestione del click sull'intera pila
+            const paperStack = document.querySelector(".paper-stack");
+            if (paperStack) {
+                paperStack.addEventListener("click", (e) => {
+                    // Evita di sfogliare se si clicca su link interni (es. i pulsanti dell'ultima scheda)
+                    if (e.target.closest("a")) return;
+                    flipCard();
+                });
+            }
+
+            // ==========================================
+            // AGGIUNTA NAVIGAZIONE DA TASTIERA
+            // ==========================================
+            window.addEventListener("keydown", (e) => {
+                // Se premi la freccia destra, simula il click in avanti
+                if (e.key === "ArrowRight") {
+                    flipCard();
+                }
+                
+                // Opzionale: se vuoi gestire anche il ritorno indietro con la freccia sinistra
+                else if (e.key === "ArrowLeft" && currentIndex > 0 && !isAnimating) {
+                    isAnimating = true;
+                    currentIndex--;
+                    
+                    const cardToGoBack = cards[currentIndex];
+
+                    // Riporta giù la carta precedente con un'animazione inversa
+                    gsap.to(cardToGoBack, {
+                        duration: 0.5,
+                        y: 0,
+                        x: 0,
+                        rotation: 0,
+                        scale: 1,
+                        opacity: 1,
+                        ease: "power3.out",
+                        onComplete: () => {
+                            isAnimating = false;
+                        }
+                    });
+
+                    // Ripristina i z-index
+                    cards.forEach((card, idx) => {
+                        if (idx >= currentIndex) {
+                            gsap.set(card, { zIndex: totalCards - (idx - currentIndex) });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
