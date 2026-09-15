@@ -197,7 +197,7 @@ a {
     z-index: 3;
     opacity: 0;
     pointer-events: none;
-    transform: scale(1.8) translate(-21%, 10%);
+    transform: scale(2.1) translate(-7%, 21%);
 }
 
 .avatar-stars{
