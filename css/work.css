@@ -1,217 +1,404 @@
-/* --- SEZIONE WORK --- */
+/* =========================
+   WORK SECTION
+========================= */
+
 .work-hero {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2.5rem 1.25rem 5rem 1.25rem;
+    padding: 3rem 1.5rem 6rem;
 }
 
-/* Titolo e Sottotitolo */
+/* --- Titolo --- */
+
 .work-title-container {
     text-align: center;
-    /* Dà un respiro ampio e responsive prima di arrivare alla zona progetti */
-    margin-bottom: 4rem; 
+    margin-bottom: 4rem;
 }
 
 .work-title-container h1 {
     font-family: 'Fraunces', serif;
-    font-size: clamp(2.8rem, 5vw + 1rem, 6rem);
+    font-size: clamp(3rem, 6vw, 6rem);
     color: rgb(253, 183, 100);
-    margin-top: 0;
-    margin-bottom: 1rem; 
-    line-height: 1.1; 
+    margin: 0 0 1rem;
+    line-height: 1.05;
 }
 
 .work-title-container p {
-    font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
     color: rgb(142, 185, 255);
     margin: 0;
-    /* Spazio responsive bello ampio tra il paragrafo e l'inizio del blocco card sottostante */
-    margin-bottom: 3.5rem; 
+    line-height: 1.5;
 }
 
-/* Contenitore della Card */
+
+/* =========================
+   PROJECT
+========================= */
+
 .project-container {
-    max-width: 80%;
-    margin: 0 auto;
-    padding: 0 1.25rem;
     width: 100%;
+    max-width: 1050px;
+    margin: 0 auto 5rem;
+    padding: 0;
 }
 
-/* Etichetta del progetto: vicina alla card ma con il giusto respiro */
+/* --- Project label --- */
+
 .project-tag {
-    font-size: 0.8rem;
-    color: rgba(35, 35, 35, 1);
-    margin-left: 3rem;
-    margin-top: 0;
-    /* Usiamo 'em' così la distanza del tag è proporzionale alla grandezza del suo testo */
-    margin-bottom: 0.8em; 
-    display: block; 
+    display: block;
+    margin: 0 0 0.75rem 2rem;
+
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: rgba(35, 35, 35, 0.75);
 }
 
-/* La Card principale */
+
+/* =========================
+   PROJECT CARD
+========================= */
+
 .project-card {
-    background-color: rgba(250, 248, 245, 0.90);
+    width: 100%;
+    min-height: 380px;
+    height: 400px;
+
+    background-color: rgba(250, 248, 245, 0.92);
     border-radius: 1.25rem;
+
     display: flex;
     overflow: hidden;
-    box-shadow: 1rem 1rem 2.5rem rgba(0, 0, 0, 0.4);
-    max-height: 400px;
-    margin-top: 0; /* Lo spazio sopra è già gestito dal container e dal tag */
+
+    box-shadow: 1rem 1rem 2.5rem rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-/* Lato Sinistro: Immagine */
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 1.2rem 1.4rem 3rem rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
 .project-preview {
-    flex: 0 0 40%; 
+    flex: 0 0 40%;
+    height: 100%;
+
     background-color: #1e352b;
     position: relative;
     overflow: hidden;
+
     box-shadow: 1rem 0 1.25rem rgba(0, 0, 0, 0.3);
 }
 
 .project-img {
-    height: 100%; 
-    width: 115%; 
-    object-fit: cover; 
-    object-position: center 6%; 
+    width: 115%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center 6%;
+
     display: block;
 }
 
-/* Parte del testo */
+/* Pawly: mostra l'intera schermata mobile */
+.pawly-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.flowdesk-img {
+    object-position: 5% 6%;
+}
+
+/* =========================
+   PROJECT INFO
+========================= */
+
 .project-info {
-    flex: 0 0 60%;
-    padding: 1rem 1.5rem; /* Padding ancora più compatto */
+    flex: 1;
+
+    padding: 2rem 2.25rem;
+
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Mette il testo in alto anziché forzarlo al centro col 'center' */
+
     color: #2b2b2b;
-    overflow-y: auto;
+
+    overflow: hidden;
 }
 
-/* Togliamo i margini di default ai testi dentro la card per gestirli al millimetro */
-/* .project-info p {
-    margin-bottom: 1.1rem; /* Spazio controllato solo tra un paragrafo e l'altro */
+.project-info span {
+    display: block;
 
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
 
-.project-info span{
-    font-size: 0.7rem;
-    margin-top: 1.3rem;
-    margin-left: 0.7rem;
-
+    margin: 0 0 0.45rem;
+    color: rgba(35, 35, 35, 0.65);
 }
 
-.project-info h2{
-    font-size: 2.3rem;
+.project-info h2 {
+    font-family: 'Fraunces', serif;
+
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    line-height: 1.1;
+
     color: rgb(144, 33, 36);
-    margin-top: -0.3rem;
-    margin-left: 0.7rem;
+
+    margin: 0 0 0.75rem;
 }
 
-.project-description{
-    font-size: 1.2rem;
-    margin-top: -0.7rem;
-    font-weight: bolder;
-    margin-left: 0.7rem;
+.project-description {
+    font-size: 1rem;
+    font-weight: 500;
+
+    line-height: 1.5;
+
+    margin: 0 0 1.25rem;
 }
+
+
+/* =========================
+   PROJECT GOAL
+========================= */
 
 .project-goal-box {
-    background-color: rgb(144, 33, 36); 
+    width: 90%;
+    max-width: 520px;
+
+    background-color: rgb(144, 33, 36);
     color: rgb(250, 248, 245);
-    border-radius: 0.8rem; 
-    padding: 1rem 1.5rem; 
-    
-    /* Gestione dei margini: Sopra, Destra (auto per staccarlo), Sotto, Sinistra */
-    margin: 0.5rem auto 1rem 0.5rem; 
-    
-    /* Invece di 100%, diamo una larghezza controllata (es. 85% o 90%) */
-    width: 85%; 
-    max-width: 85%; 
-    
-    box-shadow: inset 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.5); 
-    box-sizing: border-box; 
+
+    border-radius: 0.8rem;
+
+    padding: 1rem 1.25rem;
+    margin: 0 0 1.25rem;
+
+    box-shadow:
+        inset 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.35);
+
+    box-sizing: border-box;
 }
 
-.project-goal-box strong{
-    font-size: 1.3rem;
+.project-goal-box strong {
+    display: block;
+
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
 }
 
-/* Assicuriamoci che il paragrafo dentro al box non abbia margini che sballano le distanze */
 .project-goal-box p {
     margin: 0;
-    font-size: 0.95rem; /* Leggermente più compatto per il box */
-    line-height: 1.4;
+
+    font-size: 0.9rem;
+    line-height: 1.45;
 }
 
-.project-role strong{
-    margin-left: 0.7rem;
-    font-size: 1.3rem;
+
+/* =========================
+   ROLE
+========================= */
+
+.project-role {
+    margin: 0 0 1rem;
 }
+
+.project-role strong {
+    margin: 0;
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+
+/* =========================
+   LINKS
+========================= */
 
 .project-links {
     display: flex;
     align-items: center;
-    gap: 6rem; /* <-- Questo è il "magico" distanziatore responsive! Regola il valore in rem */
-    margin-top: 1rem; /* Eventuale spazio sopra per staccarlo dal testo precedente */
-    margin-left: 0.7rem;
+    flex-wrap: wrap;
+
+    gap: 1rem;
+
+    margin: auto 0 0;
 }
 
 .project-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 120px;
+
+    padding: 0.7rem 1.2rem;
+
+    border: 1.5px solid rgb(144, 33, 36);
+    border-radius: 999px;
+
     text-decoration: none;
-    font-weight: 500;
-    /* eventuali padding o colori dei tuoi pulsanti/link */
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
     color: rgb(144, 33, 36);
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
 }
 
-/* --- RESPONSIVE PER MOBILE & TABLET (< 768px) --- */
+.project-links a:hover {
+    background-color: rgb(144, 33, 36);
+    color: rgb(250, 248, 245);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
 @media screen and (max-width: 768px) {
-    
-    /* 1. Allarghiamo il contenitore principale del progetto per occupare più spazio sullo schermo */
+
+    .work-hero {
+        padding: 2rem 1rem 4rem;
+    }
+
+    .work-title-container {
+        margin-bottom: 3rem;
+    }
+
+    .work-title-container h1 {
+        font-size: clamp(2.8rem, 13vw, 4.5rem);
+    }
+
+    .work-title-container p {
+        font-size: 1rem;
+    }
+
+
     .project-container {
         max-width: 100%;
-        padding: 0 0.5rem;
+        margin-bottom: 4rem;
     }
 
-    /* 2. Trasformiamo la card in un layout verticale (Immagine sopra, Testo sotto) */
+    .project-tag {
+        margin-left: 1rem;
+        font-size: 0.7rem;
+    }
+
+
     .project-card {
         flex-direction: column;
-        max-height: none; /* Rimuoviamo il limite di altezza fissa */
+        min-height: auto;
+
+        border-radius: 1rem;
     }
 
-    /* 3. L'immagine occupa tutta la larghezza e diamo un'altezza fissa proporzionata per mobile */
+
     .project-preview {
-        flex: 0 0 auto;
+        flex: none;
+
         width: 100%;
-        height: 250px; /* Altezza regolabile a piacimento per l'anteprima */
-        box-shadow: 0 1rem 1.25rem rgba(0, 0, 0, 0.2);
+        height: 250px;
+
+        box-shadow:
+            0 1rem 1.25rem rgba(0, 0, 0, 0.2);
     }
 
     .project-img {
         width: 100%;
         height: 100%;
+
         object-fit: cover;
     }
 
-    /* 4. La sezione info occupa il resto dello spazio sotto l'immagine */
+
     .project-info {
-        flex: 0 0 auto;
-        padding: 1.5rem 1rem;
-        overflow-y: visible; /* Evitiamo doppi scroll interni su mobile */
+        padding: 1.5rem 1.25rem;
     }
 
-    /* 5. Ottimizziamo il box dell'obiettivo e i link per schermi piccoli */
+    .project-info h2 {
+        font-size: 2rem;
+    }
+
+    .project-description {
+        font-size: 0.95rem;
+    }
+
+
     .project-goal-box {
         width: 100%;
-        max-width: 100%;
-        margin: 0.5rem 0 1rem 0; /* Centrato e senza margini laterali forzati */
+        max-width: none;
+
+        padding: 1rem;
+    }
+
+    .project-goal-box strong {
+        font-size: 1rem;
+    }
+
+    .project-goal-box p {
+        font-size: 0.88rem;
+    }
+
+
+    .project-links {
+        margin-top: 0.5rem;
+
+        gap: 0.75rem;
+    }
+
+    .project-links a {
+        flex: 1;
+
+        min-width: 0;
+
+        padding: 0.65rem 0.8rem;
+
+        font-size: 0.85rem;
+    }
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media screen and (max-width: 420px) {
+
+    .project-preview {
+        height: 210px;
+    }
+
+    .project-info h2 {
+        font-size: 1.8rem;
     }
 
     .project-links {
-        gap: 2rem; /* Riduciamo lo spazio eccessivo tra i link su mobile */
-        justify-content: space-around;
-        margin-left: 0;
+        flex-direction: column;
+        width: 100%;
     }
 
-    /* Adattiamo leggermente i titoli troppo grandi per evitare sbavature */
-    .project-info h2 {
-        font-size: 1.8rem;
+    .project-links a {
+        width: 100%;
     }
 }

@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Controlla se ci troviamo nella cartella "html/" o nella root principale
+    const isInHtmlFolder = window.location.pathname.includes("/html/");
+    
+    // Definisce i percorsi corretti per il fetch in base a dove si trova la pagina attuale
+    const navbarPath = isInHtmlFolder ? "navbar.html" : "html/navbar.html";
+    const footerPath = isInHtmlFolder ? "footer.html" : "html/footer.html";
+
     // Carica la Navbar
-    fetch("navbar.html")
+    fetch(navbarPath)
         .then(response => {
             if (!response.ok) throw new Error("Errore caricamento navbar");
             return response.text();
@@ -13,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(err => console.error(err));
 
     // Carica il Footer
-    fetch("footer.html")
+    fetch(footerPath)
         .then(response => {
             if (!response.ok) throw new Error("Errore caricamento footer");
             return response.text();
@@ -21,30 +28,25 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             document.getElementById("footer-placeholder").innerHTML = data;
             setActiveFooterLink();
-            customizeFooterTitle(); // <--- Personalizza il titolo appena l'HTML esiste nel DOM!
+            customizeFooterTitle(); 
         })
         .catch(err => console.error(err));
 });
 
 // Funzione per personalizzare il titolo del footer in base alla pagina
 function customizeFooterTitle() {
-    // Recupera il nome del file corrente (es. "work.html", "about.html")
-    const currentPath = window.location.pathname.split("/").pop() || "home.html";
-    
-    // Seleziona l'h2 del footer inserito dinamicamente
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
     const footerTitle = document.querySelector("#footer-placeholder .keep-exploring-title");
 
     if (footerTitle) {
-        // Mappa delle pagine con i relativi titoli desiderati nel footer
         const pageTitles = {
             "work.html": "That's it?",
             "about.html": "See what I create",
             "contact.html": "Until the next idea",
             "little-more.html": "That's me",
-            "home.html": "Keep Exploring"
+            "index.html": "Keep Exploring"
         };
 
-        // Cambia il testo se la pagina è nella mappa, altrimenti lascia quello di default
         if (pageTitles[currentPath]) {
             footerTitle.textContent = pageTitles[currentPath];
         }
@@ -52,7 +54,7 @@ function customizeFooterTitle() {
 }
 
 function setActiveNavLink() {
-    const currentPath = window.location.pathname.split("/").pop() || "home.html";
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
     const navLinks = document.querySelectorAll(".navbar a");
     
     navLinks.forEach(link => {
@@ -65,7 +67,7 @@ function setActiveNavLink() {
 }
 
 function setActiveFooterLink() {
-    const currentPath = window.location.pathname.split("/").pop() || "home.html";
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
     const footerLinks = document.querySelectorAll(".breadcrumbs a");
     
     footerLinks.forEach(link => {
