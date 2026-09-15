@@ -652,9 +652,44 @@ a {
     }
 
     .avatar-photo {
-        transform: scale(1.6) translate(-12.5%, 1.5%) !important;
+        transform: scale(2.2) translate(-12%, 22%) !important;
     }
 
+    .avatar-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    transform-origin: center center;
+    transition: opacity 0.5s ease-in-out !important;
+    will-change: opacity;
+    pointer-events: none;
+    }
+
+    /* 2. DISEGNO (nascosto subito, già in posizione) */
+    .avatar-draw {
+        z-index: 3;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(2.1) translate(-7%, 21%);
+    }
+
+    .avatar-stars{
+    position: absolute;
+    
+    /* POSIZIONAMENTO SOPRA LA TESTA */
+    top: -30% !important;            /* Regola questo valore per alzarle o abbassarle */
+    left: 65% !important;            /* Le sposta verso il centro orizzontale */
+    height: auto;
+    
+    /* LIVELLO E COMPORTAMENTO */
+    z-index: 5;            /* Sta SOPRA sia al bordo (z-index: 1) sia alla ragazza (z-index: 2) */
+    pointer-events: none;  /* Evita di intralciare eventuali click */
+    transform: translate(-50%, 40%) rotate(15deg); /* Ruota di 15 gradi in senso orario */
+    filter: drop-shadow(15px -5px 2px rgba(0, 0, 0, 0.45));
+}
 
     .hero-wrapper2 {
         width: 180px;
