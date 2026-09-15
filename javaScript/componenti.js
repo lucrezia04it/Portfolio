@@ -54,45 +54,13 @@ function customizeFooterTitle() {
 }
 
 function setActiveNavLink() {
-    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll(".navbar a");
 
     navLinks.forEach(link => {
         const href = link.getAttribute("href");
 
-        // Home
-        if (link.textContent.trim() === "Home") {
-            link.setAttribute(
-                "href",
-                currentPath === "index.html" ? "index.html" : "../index.html"
-            );
-        }
-
-        // Pagine interne
-        else if (["About", "Work", "Little More", "Get in Touch"].includes(link.textContent.trim())) {
-            const pages = {
-                "About": "about.html",
-                "Work": "work.html",
-                "Little More": "little-more.html",
-                "Get in Touch": "contact.html"
-            };
-
-            link.setAttribute(
-                "href",
-                currentPath === "index.html"
-                    ? `html/${pages[link.textContent.trim()]}`
-                    : pages[link.textContent.trim()]
-            );
-        }
-
-        // Aggiorna stato active
-        const finalHref = link.getAttribute("href");
-
-        if (
-            (currentPath === "index.html" && finalHref === "index.html") ||
-            finalHref === currentPath ||
-            finalHref === `html/${currentPath}`
-        ) {
+        if (currentPath === new URL(href, window.location.origin).pathname) {
             link.classList.add("active");
         } else {
             link.classList.remove("active");
